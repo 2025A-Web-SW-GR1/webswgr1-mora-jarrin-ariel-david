@@ -1,0 +1,182 @@
+:root {
+    --font-menuI: 'Share Tech Mono', monospace;
+    --color-primary: #7b331f;
+    --color-bg-nav:  #fffaf2;
+    --color-sec-nav:  #ffe5c3;
+}
+
+
+
+.site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-color: var(--color-sec-nav);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    z-index: 1000;
+    padding: 0 50% 0 0;
+    gap: 3rem;
+    animation: fadeMenu 4s ease-out infinite;
+
+}
+
+
+.site-nav .logo {
+    max-height: 80%;
+    padding-left: 10%;
+    width: auto;
+    display: block;
+}
+
+.barra-nav {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 0;
+}
+
+.barra-nav li a {
+    text-decoration: none;
+    font-family: var(--font-menuI);
+    font-weight: 800;
+    text-transform: uppercase;
+    color: black;
+    padding: 0.5rem 0.75rem;
+    display: block;
+}
+
+.barra-nav a:hover,
+.barra-nav .active {
+    background: var(--color-primary);
+    color: var(--color-bg-nav);
+    box-shadow: 0 5px 20px var(--color-primary);
+    transform: scale(1.1);
+    border-radius: 3px;
+}
+
+/*Botón para buscar*/
+.site-nav .group {
+    display: flex;
+    line-height: 28px;
+    align-items: center;
+    position: relative;
+    max-width: 300px;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.site-nav .group .input {
+    width: 100%;
+    height: 40px;
+    line-height: 28px;
+    padding: 0 1rem;
+    padding-left: 2.5rem;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    outline: none;
+    background-color: #f3f3f4;
+    color: #0d0c22;
+    transition: .3s ease;
+}
+
+.site-nav .group .input::placeholder {
+    color: #9e9ea7;
+}
+
+.site-nav .group .input:focus,
+input:hover {
+    outline: none;
+    border-color: #fff;
+    background-color: #fff;
+    box-shadow: 5px 8px 8px 5px var(--color-primary);
+}
+
+.site-nav .group .icon {
+    position: absolute;
+    left: 1rem;
+    fill: #9e9ea7;
+    width: 1rem;
+    height: 2.5rem;
+}
+/*Perfil - Botón*/
+.site-nav .perfil{
+    align-items: center;
+    text-align: center;
+    position: relative;
+    flex-shrink: 0;
+    cursor: pointer;  
+    border: none;
+}
+
+.site-nav .perfil:hover{
+    transform: scale(1.2);
+}
+.site-nav .perfil .bi-person-square{
+    display: block;
+    position: relative;
+    width: 50%;
+    height: 25px;
+    margin-left: 10px;
+}
+.site-nav .perfil #labelP{
+    display: block;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: 600;
+    width: 50%;
+    height: 50%;
+    color:black;
+    text-align: center;
+    font-family: var(--font-menuI);
+}
+/*Carrito boton*/
+
+.site-nav .cupones{
+    display: block;
+    align-items: center;
+    position: relative;
+    flex-shrink: 0;
+    
+}
+
+.site-nav .cupones:hover{
+    transform: scale(1.2);
+}
+.site-nav .cupones .bi-cart-fill{
+    position: relative;
+    width: 50%;
+    height: 25px;
+    margin-left: 10px;
+    cursor: pointer;
+
+}
+.site-nav .cupones #labelP2{
+    display: block;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: 600;
+    width: 50%;
+    height: 50%;
+    color:black;
+    text-align: center;
+    font-family: var(--font-menuI);
+}
+
+/*Keyframes*/
+@keyframes fadeMenu {
+    0% {
+      box-shadow: 0 7px 10px #7b331f;
+    }
+    50% {
+      box-shadow: 0 5px 10px rgba(34, 5, 1, 0.5);
+    }
+    100% {
+      box-shadow: 0 7px 10px #7b331f;
+    }
+}
