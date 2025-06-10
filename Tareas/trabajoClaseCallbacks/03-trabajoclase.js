@@ -44,8 +44,7 @@ function escribirArchivoPromesa(nombreArchivo, datos) {
 leerArchivoPromesa('./a.txt')
   .then(contenido => {
     const nuevoContenido = contenido + '\n' + new Date().toString();
-    return escribirArchivoPromesa('./a.txt', nuevoContenido)
-      .then(() => nuevoContenido);
+    return escribirArchivoPromesa('./a.txt', nuevoContenido).then(() => nuevoContenido);
   })
   .then(nuevoContenido => {
     console.log("Ejemplo de promesas con then y catch");
