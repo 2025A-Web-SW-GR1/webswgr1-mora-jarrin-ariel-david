@@ -14,14 +14,13 @@ import {
 } from '@nestjs/common';
 import { CasaService } from './casa.service';
 import { FindManyOptions, Like } from 'typeorm';
-import { Casa } from './casa.entity';
 import { BuscarDto } from './dto/buscar.dto';
-import { CrearEditarBaseDto } from './dto/crear-editar.base.dto';
-import { CasaEditarDto } from './dto/casa-editar.dto';
+import { Casa } from './casa.entity';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { CasaEditarDto } from './dto/casa-editar.dto';
+import { CrearEditarBaseDto } from './dto/crear-editar.base.dto';
 import { createReadStream } from 'fs';
 import { join } from 'path';
-
 
 @Controller('api/casa')
 export class CasaController {
@@ -32,13 +31,13 @@ export class CasaController {
     }
     @Get()
     obtener(
-        @Query() parametrosConsulta:BuscarDto,
-    ){
+        @Query() parametrosConsulta: BuscarDto,
+    ) {
         const objetoBusqueda: FindManyOptions<Casa> = {};
-        if(parametrosConsulta.nombre){
+        if (parametrosConsulta.nombre) {
             objetoBusqueda.where = {
-                nombre: 
-                   Like("%" + parametrosConsulta.nombre + "%"),
+                nombre:
+                    Like("%" + parametrosConsulta.nombre + "%"),
             }
         }
         return this.casaService.obtenerTodos(objetoBusqueda);
@@ -91,6 +90,7 @@ export class CasaController {
         }
         throw new BadRequestException('No se encontro el registro');
     }
+
     // Como subir un archivo al servidor, docs:
     // https://docs.nestjs.com/techniques/file-upload
     // Instalar el paquete:

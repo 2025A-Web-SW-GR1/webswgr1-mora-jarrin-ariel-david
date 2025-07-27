@@ -22,4 +22,12 @@ export class Casa {
 
   @Column({ nullable: true })
   fileID?: string;
+
+  // Usado para los datos de sesion
+
+  @Column({ nullable: true })
+  username: string;
+
+  @Column({ nullable: true })
+  password: string;
 }

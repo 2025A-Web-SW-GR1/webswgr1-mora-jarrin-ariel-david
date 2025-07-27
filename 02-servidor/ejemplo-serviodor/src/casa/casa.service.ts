@@ -5,7 +5,7 @@ import { CrearEditarBaseDto } from './dto/crear-editar.base.dto';
 
 @Injectable()
 export class CasaService {
-     constructor(
+    constructor(
         @Inject('CASA_REPOSITORY')
         private casaRepository: Repository<Casa>,
     ) { }
@@ -15,16 +15,21 @@ export class CasaService {
     ) {
         return this.casaRepository.find(options);
     }
+
     crearUno(
         valoresAActualizar: CrearEditarBaseDto
     ) {
         let nuevaInstancia = this.casaRepository.create();
         nuevaInstancia = {
+            ...nuevaInstancia,
             ...valoresAActualizar,
+            username: (valoresAActualizar as any).username ?? '',
+            password: (valoresAActualizar as any).password ?? '',
         }
         return this.casaRepository.save(nuevaInstancia);
     }
-     obtenerUnoPorId(id: number) {
+
+    obtenerUnoPorId(id: number) {
         return this.casaRepository.findOneBy({ id });
     }
 
@@ -40,7 +45,8 @@ export class CasaService {
         }
         return this.casaRepository.save(nuevaInstancia);
     }
-       async actualizarArchivoPorId(
+
+    async actualizarArchivoPorId(
         valoresAActualizar: {
             fileContentType: string;
             filename: string;
@@ -57,11 +63,17 @@ export class CasaService {
         registroActualizar.id = recordExist.id;
         return this.casaRepository.save(registroActualizar);
     }
-    
+
     eliminarUnoPorId(
         id: number
     ) {
         return this.casaRepository.delete(id);
     }
 
+
+    buscarUnoPorUsername(
+        username: string
+    ) {
+        return this.casaRepository.findOneByOrFail({ username });
+    }
 }
