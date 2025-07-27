@@ -1,0 +1,23 @@
+meta {
+  name: [Casa] [Crear]
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3000/api/casa
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nombre":"2",
+    "valor":"a",
+    "imagenUrl":"..."
+  }
+}
+
+body:multipart-form {
+  archivoASubir: @file(D:\1 Aritmetica y logica de computadores.pdf) @contentType(file)
+}
