@@ -1,22 +1,22 @@
-
 import { Controller, Get, Req, Res } from '@nestjs/common';
 import { CasaService } from './casa.service';
-
 @Controller('casas') 
 export class CasaViewController {
   constructor(private readonly casaService: CasaService) {}
-
   @Get()
-  async listarVistas(@Req() req: any, @Res() res: any) {
-    let casas;
+  async listarTodas(@Res() res: any) {
+    const casas = await this.casaService.obtenerTodos();
+    return res.render('casas', { casas, title: 'Todas las casas' });
+  }
+  @Get('mias')
+  async listarMias(@Req() req: any, @Res() res: any) {
     const user = req.session?.user;
-    if (user && user.username) {
-      casas = await this.casaService.obtenerTodos({
-        where: { username: user.username },
-      });
-    } else {
-      casas = await this.casaService.obtenerTodos();
+    if (!user?.username) {
+      return res.redirect('/auth/login-vista?mensaje=Por favor inicia sesión');
     }
-    return res.render('casas', { casas });
+    const casas = await this.casaService.obtenerTodos({
+      where: { username: user.username },
+    });
+    return res.render('casas', { casas, title: `Casas de ${user.username}` });
   }
 }
